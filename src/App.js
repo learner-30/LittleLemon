@@ -1,4 +1,4 @@
-import './App.css';
+import { ChakraProvider, Flex, Box } from "@chakra-ui/react"
 import Header from './Header'
 import Nav from './Nav'
 import Main from './Main'
@@ -7,12 +7,15 @@ import Footer from './Footer'
 
 function App() {
   return (
-    <div className='app-container'>
-      <Header />
-      <Nav />
-      <Main />
-      <Footer />
-    </div>
+    <ChakraProvider>
+      <Flex direction="column" minHeight="100vh">
+        <Header />
+        <Box flex="1">
+
+        </Box>
+        <Footer />
+      </Flex>
+    </ChakraProvider>
   );
 }
 
