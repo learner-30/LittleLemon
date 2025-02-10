@@ -1,5 +1,6 @@
 import restauranfood from './images/restauranfood.jpg'
 import {Button, Heading, HStack, Image, Text, VStack} from "@chakra-ui/react";
+import { Link } from "react-router-dom"
 import "@fontsource/markazi-text"
 import "@fontsource/roboto"
 
@@ -58,6 +59,8 @@ function Main() {
                         backgroundColor="#F4CE14"
                         borderRadius="10px"
                         mt="10px"
+                        as={Link}
+                        to="/reservation"
                     >
                         Reserve a Table
                     </Button>

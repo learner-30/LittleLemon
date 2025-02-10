@@ -1,13 +1,14 @@
 import {ReactComponent as Logo} from './images/Logo.svg'
 import { Box, HStack, VStack } from '@chakra-ui/react';
+import { Link } from "react-router-dom"
 
 const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#" },
-    { label: "Menu", href: "#" },
-    { label: "Reservations", href: "#" },
-    { label: "Order Online", href: "#" },
-    { label: "Login", href: "#" }
+    { label: "Home", to: "/" },
+    { label: "About", to: "/" },
+    { label: "Menu", to: "/" },
+    { label: "Reservations", to: "/reservation" },
+    { label: "Order Online", to: "/" },
+    { label: "Login", to: "/" }
 ];
 
 function Header() {
@@ -36,7 +37,7 @@ function Header() {
               <nav>
                 <HStack display={{ base: 'none', md: 'flex' }} spacing={8}>
                   {navLinks.map((item) => (
-                    <a href={item.href}>{item.label}</a>
+                    <Link to={item.to}>{item.label}</Link>
                   ))}
                 </HStack>
                 <VStack 
@@ -46,7 +47,7 @@ function Header() {
                     px={5}
                 >
                   {navLinks.map((item) => (
-                    <a href={item.href}>{item.label}</a>
+                    <Link to={item.to}>{item.label}</Link>
                   ))}
                 </VStack>
               </nav>

@@ -1,20 +1,17 @@
-import { ChakraProvider, Flex, Box } from "@chakra-ui/react"
-import Header from './Header'
-import Nav from './Nav'
-import Main from './Main'
-import Footer from './Footer'
-
+import { ChakraProvider } from "@chakra-ui/react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Homepage from "./Homepage";
+import Reservation from "./Reservation";
 
 function App() {
   return (
     <ChakraProvider>
-      <Flex direction="column" minHeight="100vh">
-        <Header />
-        <Box flex="1">
-          <Main />
-        </Box>
-        <Footer />
-      </Flex>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage/>}/>
+          <Route path="/reservation" element={<Reservation/>}/>
+        </Routes>
+      </BrowserRouter>
     </ChakraProvider>
   );
 }
