@@ -11,7 +11,7 @@ function App() {
       <Flex direction="column" minHeight="100vh">
         <Header />
         <Box flex="1">
-
+          <Main />
         </Box>
         <Footer />
       </Flex>

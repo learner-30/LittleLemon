@@ -6,6 +6,8 @@
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@fontsource/markazi-text": "^5.1.1",
+    "@fontsource/roboto": "^5.1.1",
     "cra-template": "1.2.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.3.5",

@@ -13,15 +13,16 @@ const navLinks = [
 function Header() {
     return (
         <Box
-          position="fixed"
+          // position="fixed"
           top="0px"
           left="0px"
           right="0px"
-          backgroundColor="antiquewhite"
+          // height="120px"
+          // backgroundColor="antiquewhite"
         >
           <Box color="black">
             <HStack
-              px={16}
+              px={{ base: "64px", md: "290px" }}
               py={4}
               justifyContent="space-between"
               alignItems="center"

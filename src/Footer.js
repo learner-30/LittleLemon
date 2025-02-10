@@ -1,18 +1,18 @@
-import restaurantImage from './images/restaurant.jpg'
+import footerImage from './images/footer_image.jpg'
 import {Box, Flex, HStack, Image, VStack} from "@chakra-ui/react";
 
 function Footer() {
     return (
         <Box backgroundColor="antiquewhite">
             <HStack
-                px={16}
+                px={{ base: "64px", md: "290px" }}
                 py={16}
                 justifyContent="left"
                 alignItems="top"
                 spacing={100}
             >
                 <Image
-                    src={restaurantImage}
+                    src={footerImage}
                     alt='footer logo'
                     height={300}
                     width={150}
