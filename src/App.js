@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Homepage from "./Homepage";
-import Reservation from "./Reservation";
+import BookingPage from "./BookingPage";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage/>}/>
-          <Route path="/reservation" element={<Reservation/>}/>
+          <Route path="/booking-page" element={<BookingPage/>}/>
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

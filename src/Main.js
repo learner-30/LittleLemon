@@ -60,7 +60,7 @@ function Main() {
                         borderRadius="10px"
                         mt="10px"
                         as={Link}
-                        to="/reservation"
+                        to="/booking-page"
                     >
                         Reserve a Table
                     </Button>
