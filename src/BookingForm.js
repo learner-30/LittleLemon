@@ -1,4 +1,5 @@
-import {FormControl, FormLabel, Input, Select, Textarea, Box, Button, Heading, HStack, Image, Text, VStack} from "@chakra-ui/react";
+import { Field, Input, Button, Heading, VStack } from "@chakra-ui/react";
+import { NativeSelectRoot, NativeSelectField } from "./components/ui/native-select"
 import { useFormik } from "formik";
 
 const BookingForm = (props) => {
@@ -7,9 +8,10 @@ const BookingForm = (props) => {
             date: "",
             time: "",
             guests: "",
-            occasion: "None",
+            occasion: "",
         }
     });
+
     return (
         <VStack
             // height="600px"
@@ -25,7 +27,8 @@ const BookingForm = (props) => {
                 fontFamily="Markazi Text"
                 fontWeight="medium"
                 color="#F4CE14"
-                // lineHeight="0.7"
+                lineHeight="1.0"
+                mt="10px"
             >
                 Reservations
             </Heading>
@@ -33,30 +36,32 @@ const BookingForm = (props) => {
                 style={{width: "400px", color:"#EDEFEE"}}
                 onSubmit={formik.handleSubmit}
             >
-                <FormControl>
-                    <FormLabel htmlFor="res-date">Choose date</FormLabel>
+                <Field.Root>
+                    <Field.Label htmlFor="res-date">Choose date</Field.Label>
                     <Input 
                         type="date" 
                         id="res-date" 
                         name="date"
                         {...formik.getFieldProps("date")}
                     />
-                </FormControl>
-                <FormControl mt="30px">
-                    <FormLabel htmlFor="res-time">Choose time</FormLabel>
-                    <Select 
-                        id="res-time"
-                        name="time"
-                        {...formik.getFieldProps("time")}
-                    >
-                        <option value="" disabled>--Select a time --</option>
-                        {props.times.availableTimes.map((time) => (
-                             <option>{time}</option>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl mt="30px">
-                    <FormLabel htmlFor="guests">Number of guests</FormLabel>
+                </Field.Root>
+                <Field.Root mt="30px">
+                    <Field.Label htmlFor="res-time">Choose time</Field.Label>
+                    <NativeSelectRoot>
+                        <NativeSelectField 
+                            id="res-time" 
+                            name="time"
+                            {...formik.getFieldProps("time")}
+                            placeholder="Select time"
+                        >
+                            {props.times.availableTimes.map((time) => (
+                                <option value={time}>{time}</option>
+                            ))}
+                        </NativeSelectField>
+                    </NativeSelectRoot>
+                </Field.Root>
+                <Field.Root mt="30px">
+                    <Field.Label htmlFor="guests">Number of guests</Field.Label>
                     <Input 
                         type="number" 
                         id="guests" 
@@ -66,19 +71,21 @@ const BookingForm = (props) => {
                         // onBlur={formik.handleBlur}
                         // value={formik.values.guests}
                     />
-                </FormControl>
-                <FormControl mt="30px">
-                    <FormLabel htmlFor="occasion">Occasion</FormLabel>
-                    <Select 
-                        id="occasion" 
-                        name="occasion"
-                        {...formik.getFieldProps("occasion")}
-                    >
-                        <option>None</option>
-                        <option>Birthday</option>
-                        <option>Anniversary</option>
-                    </Select>
-                </FormControl>
+                </Field.Root>
+                <Field.Root mt="30px">
+                    <Field.Label htmlFor="occasion">Occasion</Field.Label>
+                    <NativeSelectRoot>
+                        <NativeSelectField 
+                            id="occasion" 
+                            name="occasion"
+                            {...formik.getFieldProps("occasion")}
+                            placeholder="Select occasion"
+                        >
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                        </NativeSelectField>
+                    </NativeSelectRoot>
+                </Field.Root>
                 <Button
                     type="submit"
                     fontSize="18px"
@@ -88,9 +95,11 @@ const BookingForm = (props) => {
                     borderRadius="10px"
                     mt="50px"
                     onClick={() => props.dispatch({time: formik.values.time})}
+                    color="black"
                 >
                     Reserve a Table
                 </Button>
+                <p>{formik.values.time}</p>
             </form>
         </VStack>
     );

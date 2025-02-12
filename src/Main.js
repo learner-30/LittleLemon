@@ -3,6 +3,7 @@ import {Button, Heading, HStack, Image, Text, VStack} from "@chakra-ui/react";
 import { Link } from "react-router-dom"
 import "@fontsource/markazi-text"
 import "@fontsource/roboto"
+import React from "react"
 
 function Main() {
     return (
@@ -56,6 +57,7 @@ function Main() {
                         fontSize="18px"
                         fontFamily="Roboto"
                         fontWeight="normal"
+                        color="black"
                         backgroundColor="#F4CE14"
                         borderRadius="10px"
                         mt="10px"

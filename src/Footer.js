@@ -9,7 +9,7 @@ function Footer() {
                 py={16}
                 justifyContent="left"
                 alignItems="top"
-                spacing={100}
+                spaceX="50px"
             >
                 <Image
                     src={footerImage}
@@ -23,7 +23,7 @@ function Footer() {
                     fontFamily="Karla"
                     fontSize={20}
                     alignItems="flex-start"
-                    spacing={7}
+                    spaceY="10px"
                 >
                     <Flex fontWeight="extrabold">
                         <p>Contact</p>
