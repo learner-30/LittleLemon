@@ -1,18 +1,46 @@
 import { Field, Input, Button, Heading, VStack } from "@chakra-ui/react";
 import { NativeSelectRoot, NativeSelectField } from "./components/ui/native-select"
+import { toaster } from "./components/ui/toaster"
 import { useFormik } from "formik";
-import { useLocation } from "react-router-dom"
+import * as Yup from 'yup';
+import { useLocation, useNavigate } from "react-router-dom"
+import { submitAPI } from "./api"
 
 const BookingForm = (props) => {
     const location = useLocation();
     const date = location.state;
+    const navigate = useNavigate();
+    const toastMessage = () => {
+        toaster.create({
+            description: "Booking has been confirmed",
+            type: "success",
+            duration: 5000
+        })
+    }
 
     const formik = useFormik({
         initialValues: {
             time: "",
-            guests: "",
+            guests: 1,
             occasion: "",
-        }
+        },
+        onSubmit: async (values) => {
+            const newValues = {...values, date: date}
+            const result = await submitAPI(newValues)
+            if (result === true) {
+                toastMessage();
+                {navigate("/confirmed-booking", {state: {newValues}})}
+            } else {
+                alert("Form submission failed. Please try again.")
+            }
+        },
+        validationSchema: Yup.object({
+            time: Yup.string().required("Required"),
+            guests: Yup.number()
+                .min(1, "Must be at least 1 guest")
+                .max(10, "Must be no more than 10 guests")
+                .required("Required"),
+        })
     });
 
     return (
@@ -49,7 +77,10 @@ const BookingForm = (props) => {
                         disabled={true}
                     />
                 </Field.Root>
-                <Field.Root mt="30px">
+                <Field.Root 
+                    mt="30px"
+                    invalid={formik.touched.time && !!formik.errors.time} 
+                >
                     <Field.Label htmlFor="res-time">Choose time</Field.Label>
                     <NativeSelectRoot>
                         <NativeSelectField 
@@ -63,8 +94,12 @@ const BookingForm = (props) => {
                             ))}
                         </NativeSelectField>
                     </NativeSelectRoot>
+                    <Field.ErrorText>{formik.errors.time}</Field.ErrorText>
                 </Field.Root>
-                <Field.Root mt="30px">
+                <Field.Root 
+                    mt="30px" 
+                    invalid={formik.touched.guests && !!formik.errors.guests} 
+                >
                     <Field.Label htmlFor="guests">Number of guests</Field.Label>
                     <Input 
                         type="number" 
@@ -75,6 +110,7 @@ const BookingForm = (props) => {
                         // onBlur={formik.handleBlur}
                         // value={formik.values.guests}
                     />
+                    <Field.ErrorText>{formik.errors.guests}</Field.ErrorText>
                 </Field.Root>
                 <Field.Root mt="30px">
                     <Field.Label htmlFor="occasion">Occasion</Field.Label>
@@ -98,12 +134,11 @@ const BookingForm = (props) => {
                     backgroundColor="#F4CE14"
                     borderRadius="10px"
                     mt="50px"
-                    onClick={() => {props.dispatch({time: formik.values.time})}}
+                    onClick={() => {props.dispatch({time: formik.values.time});}}
                     color="black"
                 >
                     Reserve a Table
                 </Button>
-                <p>{props.times.availableTimes}</p>
             </form>
         </VStack>
     );

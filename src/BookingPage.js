@@ -3,40 +3,9 @@ import Header from './Header'
 import BookingForm from './BookingForm'
 import { useReducer } from "react";
 import { useLocation } from "react-router-dom"
+import { fetchAPI } from "./api"
 
 const BookingPage = () => {
-
-  // copied from https://raw.githubusercontent.com/courseraap/capstone/main/api.js
-  const seededRandom = function (seed) {
-    var m = 2**35 - 31;
-    var a = 185852;
-    var s = seed % m;
-    return function () {
-        return (s = s * a % m) / m;
-    };
-  }
-
-  // copied from https://raw.githubusercontent.com/courseraap/capstone/main/api.js
-  const fetchAPI = function(date) {
-      let result = [];
-      let random = seededRandom(date.getDate());
-
-      for(let i = 17; i <= 23; i++) {
-          if(random() < 0.5) {
-              result.push(i + ':00');
-          }
-          if(random() < 0.5) {
-              result.push(i + ':30');
-          }
-      }
-      return result;
-  };
-
-  // copied from https://raw.githubusercontent.com/courseraap/capstone/main/api.js
-  const submitAPI = function(formData) {
-      return true;
-  };
-
   const location = useLocation();
   const date = location.state;
 
