@@ -6,7 +6,7 @@ const navLinks = [
     { label: "Home", to: "/" },
     { label: "About", to: "/" },
     { label: "Menu", to: "/" },
-    { label: "Reservations", to: "/booking-page" },
+    { label: "Reservations", to: "/booking-page-date" },
     { label: "Order Online", to: "/" },
     { label: "Login", to: "/" }
 ];

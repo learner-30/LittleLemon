@@ -1,11 +1,14 @@
 import { Field, Input, Button, Heading, VStack } from "@chakra-ui/react";
 import { NativeSelectRoot, NativeSelectField } from "./components/ui/native-select"
 import { useFormik } from "formik";
+import { useLocation } from "react-router-dom"
 
 const BookingForm = (props) => {
+    const location = useLocation();
+    const date = location.state;
+
     const formik = useFormik({
         initialValues: {
-            date: "",
             time: "",
             guests: "",
             occasion: "",
@@ -37,12 +40,13 @@ const BookingForm = (props) => {
                 onSubmit={formik.handleSubmit}
             >
                 <Field.Root>
-                    <Field.Label htmlFor="res-date">Choose date</Field.Label>
+                    <Field.Label htmlFor="res-date">Chosen date</Field.Label>
                     <Input 
                         type="date" 
                         id="res-date" 
                         name="date"
-                        {...formik.getFieldProps("date")}
+                        value={date}
+                        disabled={true}
                     />
                 </Field.Root>
                 <Field.Root mt="30px">
@@ -94,12 +98,12 @@ const BookingForm = (props) => {
                     backgroundColor="#F4CE14"
                     borderRadius="10px"
                     mt="50px"
-                    onClick={() => props.dispatch({time: formik.values.time})}
+                    onClick={() => {props.dispatch({time: formik.values.time})}}
                     color="black"
                 >
                     Reserve a Table
                 </Button>
-                <p>{formik.values.time}</p>
+                <p>{props.times.availableTimes}</p>
             </form>
         </VStack>
     );

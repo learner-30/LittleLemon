@@ -2,6 +2,7 @@
 import { Provider } from "./components/ui/provider"  //  v3
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Homepage from "./Homepage";
+import BookingPageDate from "./BookingPageDate";
 import BookingPage from "./BookingPage";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage/>}/>
+          <Route path="/booking-page-date" element={<BookingPageDate/>}/>
           <Route path="/booking-page" element={<BookingPage/>}/>
         </Routes>
       </BrowserRouter>
