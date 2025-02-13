@@ -1,15 +1,6 @@
 import {ReactComponent as Logo} from './images/Logo.svg'
 import { Box, HStack, VStack } from '@chakra-ui/react';
-import { Link } from "react-router-dom"
-
-const navLinks = [
-    { label: "Home", to: "/" },
-    { label: "About", to: "/" },
-    { label: "Menu", to: "/" },
-    { label: "Reservations", to: "/booking-page-date" },
-    { label: "Order Online", to: "/" },
-    { label: "Login", to: "/" }
-];
+import { NavLink } from "react-router-dom"
 
 function Header() {
     return (
@@ -35,10 +26,13 @@ function Header() {
                 <Logo />
               </nav>
               <nav>
-                <HStack display={{ base: 'none', md: 'flex' }} spacing={8}>
-                  {navLinks.map((item) => (
-                    <Link to={item.to}>{item.label}</Link>
-                  ))}
+                <HStack display={{ base: 'none', md: 'flex' }} spaceX={5}>
+                  <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>Home</NavLink>
+                  <a>About</a>
+                  <a>Menu</a>
+                  <NavLink to="/booking-page-date" className={({ isActive }) => isActive ? "active-link" : ""}>Reservations</NavLink>
+                  <a>Order Online</a>
+                  <a>Login</a>
                 </HStack>
                 <VStack 
                     display={{ base: 'flex', md: 'none' }} 
@@ -46,9 +40,12 @@ function Header() {
                     alignItems="flex-start"
                     px={5}
                 >
-                  {navLinks.map((item) => (
-                    <Link to={item.to}>{item.label}</Link>
-                  ))}
+                  <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>Home</NavLink>
+                  <a>About</a>
+                  <a>Menu</a>
+                  <NavLink to="/booking-page-date" className={({ isActive }) => isActive ? "active-link" : ""}>Reservations</NavLink>
+                  <a>Order Online</a>
+                  <a>Login</a>
                 </VStack>
               </nav>
             </HStack>

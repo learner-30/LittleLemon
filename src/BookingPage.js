@@ -7,7 +7,7 @@ import { fetchAPI } from "./api"
 
 const BookingPage = () => {
   const location = useLocation();
-  const date = location.state;
+  const date = location.state.date;
 
   const initialState = {availableTimes: {}};
 

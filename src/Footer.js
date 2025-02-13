@@ -3,7 +3,7 @@ import {Box, Flex, HStack, Image, VStack} from "@chakra-ui/react";
 
 function Footer() {
     return (
-        <Box backgroundColor="antiquewhite">
+        <Box backgroundColor="#EDEFEE">
             <HStack
                 px={{ base: "64px", md: "290px" }}
                 py={16}

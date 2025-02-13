@@ -8,7 +8,7 @@ import { submitAPI } from "./api"
 
 const BookingForm = (props) => {
     const location = useLocation();
-    const date = location.state;
+    const date = location.state.date;
     const navigate = useNavigate();
     const toastMessage = () => {
         toaster.create({
@@ -29,7 +29,7 @@ const BookingForm = (props) => {
             const result = await submitAPI(newValues)
             if (result === true) {
                 toastMessage();
-                {navigate("/confirmed-booking", {state: {newValues}})}
+                {navigate("/confirmed-booking", {state: newValues})}
             } else {
                 alert("Form submission failed. Please try again.")
             }
@@ -121,8 +121,8 @@ const BookingForm = (props) => {
                             {...formik.getFieldProps("occasion")}
                             placeholder="Select occasion"
                         >
-                            <option value="birthday">Birthday</option>
-                            <option value="anniversary">Anniversary</option>
+                            <option value="Birthday">Birthday</option>
+                            <option value="Anniversary">Anniversary</option>
                         </NativeSelectField>
                     </NativeSelectRoot>
                 </Field.Root>
@@ -136,6 +136,7 @@ const BookingForm = (props) => {
                     mt="50px"
                     onClick={() => {props.dispatch({time: formik.values.time});}}
                     color="black"
+                    aria-label="On Click"
                 >
                     Reserve a Table
                 </Button>

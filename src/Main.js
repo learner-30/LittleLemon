@@ -63,6 +63,7 @@ function Main() {
                         mt="10px"
                         as={Link}
                         to="/booking-page-date"
+                        aria-label="On Click"
                     >
                         Reserve a Table
                     </Button>

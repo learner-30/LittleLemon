@@ -55,8 +55,9 @@ const BookingFormDate = (props) => {
                     backgroundColor="#F4CE14"
                     borderRadius="10px"
                     mt="50px"
-                    onClick={() => {navigate("/booking-page", {state: formik.values.date})}}
+                    onClick={() => {navigate("/booking-page", {state: {date: formik.values.date}})}}
                     color="black"
+                    aria-label="On Click"
                 >
                     Set a date
                 </Button>
